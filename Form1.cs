@@ -39,7 +39,9 @@ namespace JigsawPuzzle
 
             canvas = new Canvas(picBoxThumb.Image, 3, 3);
             canvas.GetImages();
-
+           var pathSearch =new PathSearch();
+           var path =pathSearch.BroadFirstSearch(canvas);
+            label5.Text=  "空白块移动步骤：" + path; 
             Draw();
         }
 
@@ -102,7 +104,9 @@ namespace JigsawPuzzle
                         canvas.BestScores =Math.Min(canvas.BestScores, canvas.CurrentSteps);
                         label4.Text = canvas.BestScores.ToString();
                         canvas.GetImages();
-
+                        var pathSearch = new PathSearch();
+                        var path = pathSearch.BroadFirstSearch(canvas);
+                        label5.Text = "空白块移动步骤："+ path;
                         Draw();
 
                     }
@@ -131,7 +135,6 @@ namespace JigsawPuzzle
             }
             canvas = new Canvas(picBoxThumb.Image, 6, 6);
             canvas.GetImages();
-
             Draw();
         }
         /// <summary>
@@ -147,7 +150,6 @@ namespace JigsawPuzzle
             }
             canvas = new Canvas(picBoxThumb.Image, 9, 9);
             canvas.GetImages();
-
             Draw();
         }
         /// <summary>
@@ -162,7 +164,7 @@ namespace JigsawPuzzle
                 picBoxThumb.Image = picBoxCenter.Image = Properties.Resources._6;
             }
             canvas = new Canvas(picBoxThumb.Image, 12, 12);
-            canvas.GetImages();
+            canvas.GetImages(); 
             Draw();
         }
        //图片是否放大

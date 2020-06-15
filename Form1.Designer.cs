@@ -43,6 +43,7 @@
             this.picBoxMax = new System.Windows.Forms.PictureBox();
             this.picBoxThumb = new System.Windows.Forms.PictureBox();
             this.picBoxCenter = new System.Windows.Forms.PictureBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxMax)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picBoxThumb)).BeginInit();
@@ -195,7 +196,7 @@
             this.picBoxMax.Location = new System.Drawing.Point(74, 45);
             this.picBoxMax.Name = "picBoxMax";
             this.picBoxMax.Padding = new System.Windows.Forms.Padding(5);
-            this.picBoxMax.Size = new System.Drawing.Size(580, 528);
+            this.picBoxMax.Size = new System.Drawing.Size(580, 666);
             this.picBoxMax.TabIndex = 6;
             this.picBoxMax.TabStop = false;
             this.picBoxMax.Visible = false;
@@ -221,17 +222,26 @@
             this.picBoxCenter.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.picBoxCenter.Location = new System.Drawing.Point(0, 25);
             this.picBoxCenter.Name = "picBoxCenter";
-            this.picBoxCenter.Size = new System.Drawing.Size(580, 619);
+            this.picBoxCenter.Size = new System.Drawing.Size(580, 757);
             this.picBoxCenter.TabIndex = 0;
             this.picBoxCenter.TabStop = false;
             this.picBoxCenter.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picBoxCenter_MouseClick);
+            // 
+            // label5
+            // 
+            this.label5.Font = new System.Drawing.Font("宋体", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.label5.Location = new System.Drawing.Point(592, 624);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(208, 122);
+            this.label5.TabIndex = 7;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightGreen;
-            this.ClientSize = new System.Drawing.Size(800, 636);
+            this.ClientSize = new System.Drawing.Size(800, 774);
+            this.Controls.Add(this.label5);
             this.Controls.Add(this.picBoxMax);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -276,6 +286,7 @@
         private System.Windows.Forms.ToolStripMenuItem tsmOpen;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
         private System.Windows.Forms.PictureBox picBoxMax;
+        private System.Windows.Forms.Label label5;
     }
 }
 

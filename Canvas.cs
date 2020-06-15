@@ -54,6 +54,10 @@ namespace JigsawPuzzle
         /// 拼图图块集合
         /// </summary>
         public BlockInfo[,] Blocks { get; set; }
+        /// <summary>
+        /// 空白拼图块位置
+        /// </summary>
+        public Point CurrentLocation { get; set; }
 
         public void GetImages()
         {
@@ -80,6 +84,7 @@ namespace JigsawPuzzle
                 }
             }
             Blocks = blocks;
+            CurrentLocation = new Point(Rows-1,Columns-1);
             UpsetBlock();
         }
 
@@ -127,6 +132,15 @@ namespace JigsawPuzzle
             temp = Blocks[a.X, a.Y];
             Blocks[a.X, a.Y] = Blocks[b.X, b.Y];
             Blocks[b.X, b.Y] = temp;
+
+            if (a==CurrentLocation)
+            {
+                CurrentLocation = b;
+            }
+            if (b==CurrentLocation)
+            {
+                CurrentLocation = a;
+            }
         }
 
         /// <summary>
@@ -202,6 +216,22 @@ namespace JigsawPuzzle
                 }
             }
             return true;
+        }
+
+
+        public Point GetPoint(BlockInfo[,] blocks)
+        {
+            for (int i = 0; i < Rows; i++)
+            {
+                for (int j = 0; j < Columns; j++)
+                {
+                    if (Blocks[i, j].Location == Rows*Columns)
+                    {
+                        return new Point(i,j);
+                    }
+                }
+            }
+            return new Point();
         }
     }
 }
