@@ -24,6 +24,7 @@ namespace JigsawPuzzle
             openFileDialog1.Filter = "全部|*.*|png图片|*.png|jpg、jpeg图片|*.jpg;*.jpeg";
 
             picBoxThumb.Image = picBoxCenter.Image = Properties.Resources._6;
+            btnHint.Enabled = false;
         }
         /// <summary>
         /// 简单
@@ -36,15 +37,13 @@ namespace JigsawPuzzle
             {
                 picBoxThumb.Image = picBoxCenter.Image = Properties.Resources._6;
             }
-
+            label5.Text = "";
             canvas = new Canvas(picBoxThumb.Image, 3, 3);
-            canvas.GetImages();
-           var pathSearch =new PathSearch();
-           var path =pathSearch.BroadFirstSearch(canvas);
-            label5.Text=  "空白块移动步骤：" + path; 
+            canvas.GetImages();          
             Draw();
+            btnHint.Enabled = true;
         }
-
+        
         /// <summary>
         /// 绘图
         /// </summary>
@@ -101,12 +100,11 @@ namespace JigsawPuzzle
 
                     if (MessageBox.Show("恭喜过关", "是否重新玩一把", MessageBoxButtons.OKCancel) == DialogResult.OK)
                     {
+
+                        label5.Text = "";
                         canvas.BestScores =Math.Min(canvas.BestScores, canvas.CurrentSteps);
                         label4.Text = canvas.BestScores.ToString();
                         canvas.GetImages();
-                        var pathSearch = new PathSearch();
-                        var path = pathSearch.BroadFirstSearch(canvas);
-                        label5.Text = "空白块移动步骤："+ path;
                         Draw();
 
                     }
@@ -133,9 +131,11 @@ namespace JigsawPuzzle
             {
                 picBoxThumb.Image = picBoxCenter.Image = Properties.Resources._4;
             }
-            canvas = new Canvas(picBoxThumb.Image, 6, 6);
+            label5.Text = "";
+            canvas = new Canvas(picBoxThumb.Image, 4,4);
             canvas.GetImages();
             Draw();
+            btnHint.Enabled = true;
         }
         /// <summary>
         /// 困难
@@ -148,9 +148,11 @@ namespace JigsawPuzzle
             {
                 picBoxThumb.Image = picBoxCenter.Image = Properties.Resources._3;
             }
-            canvas = new Canvas(picBoxThumb.Image, 9, 9);
+            label5.Text = "";
+            canvas = new Canvas(picBoxThumb.Image, 5, 5);
             canvas.GetImages();
             Draw();
+            btnHint.Enabled = true;
         }
         /// <summary>
         /// 噩梦
@@ -163,9 +165,11 @@ namespace JigsawPuzzle
             {
                 picBoxThumb.Image = picBoxCenter.Image = Properties.Resources._6;
             }
-            canvas = new Canvas(picBoxThumb.Image, 12, 12);
+            label5.Text = "";
+            canvas = new Canvas(picBoxThumb.Image, 9, 9);
             canvas.GetImages(); 
             Draw();
+            btnHint.Enabled = true;
         }
        //图片是否放大
         bool isBig = false;
@@ -210,6 +214,21 @@ namespace JigsawPuzzle
         {
             picBoxMax.Hide();
             isBig = false;
+        }
+
+        private void btnHint_Click(object sender, EventArgs e)
+        {
+            label5.Text = "";
+            var pathSearch = new PathSearch();
+            
+            var path = pathSearch.DoubleBroadFirstSearch(canvas);
+
+            if (string.IsNullOrEmpty(path.Result))
+            {
+                MessageBox.Show("离完成还早，请再试试再进行提示！");
+            }
+
+            label5.Text = "空白块移动步骤：" + path.Result;
         }
     }
 }

@@ -39,9 +39,9 @@ namespace JigsawPuzzle
         /// </summary>
         public int Columns { get; set; }
         /// <summary>
-        /// 当前高度
+        /// 最终位置字符串
         /// </summary>
-        public int CurrentHeight { get; set; }
+        public string EndLocationStr { get; set; }
         /// <summary>
         /// 最好成绩
         /// </summary>
@@ -80,6 +80,7 @@ namespace JigsawPuzzle
                     graphics.DrawImage(CurrentImage, 0, 0, new Rectangle(width * j, height * i, width, height), GraphicsUnit.Pixel);
                     blocks[i, j].Image = Image.FromHbitmap(bitmap.GetHbitmap());
                     blocks[i, j].Location = location;
+                    EndLocationStr += location;
                     location++;
                 }
             }
