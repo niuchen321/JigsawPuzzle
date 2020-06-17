@@ -195,14 +195,17 @@ namespace JigsawPuzzle
         {
             //最优路径
             var optimumPath = "";
-
+            if (canvas==null)
+            {
+                return optimumPath;
+            }
             List<Task<string>> tasks = new List<Task<string>>();
 
             var task1 = BroadFirstSearch(canvas.Rows, canvas.Columns, canvas.Blocks, canvas.EndLocationStr, canvas.CurrentLocation);
             tasks.Add(task1);
             var task2 = BroadFirstSearch(canvas.Rows, canvas.Columns, canvas.Blocks, canvas.EndLocationStr, canvas.CurrentLocation);
             tasks.Add(task2);
-            var task = await Task.WhenAny(tasks);
+            var task = await Task.WhenAny(tasks).ConfigureAwait(false);
 
 
 
